@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
+    <title>Weather Dashboard</title>
+    <style rel='stylesheet' href='assets/css/style.css'></style>
+</head>
+<body>
+
+<!--Create Header-->
+<header class='dashBoardHead'>
+<p>Weather Dashboard</p>
+</header>
+
+<!--Create main div-->
+<main class='mainContainer'>
+
+<!--Container Div for grid-->
+<div id='container' class='weatherMain'>
+    <div class='row'>
+        
+        <div class='col-sm-12' class='searchText'>
+            <p class='searchText'>Search By City:</p>
+        </div>
+       
+    </div>
+<!--Search Bar-->
+    <div class='row'>
+        <div class='col-sm-12'>
+            <input class='searchBar' type='text' placeholder="ex: Atlanta">
+        </div>
+
+    </div>
+<!--Search Button-->
+    <div class='row'>
+        <div class='col-sm-12' class='searchConfirm'>
+            <button class='searchBtn'>
+                <p>Search</p>
+            </button>
+        </div>
+    </div>
+<!--Austin Button-->
+    <div class='row'>
+        <div class='col-sm-12' class='cityConfirm'>
+            <button class='cityBtn'>
+                <p>Austin</p>
+            </button>
+        </div>
+    </div>
+<!--Chi-Town Button-->
+    <div class='row'>
+        <div class='col-sm-12' class='cityConfirm'>
+            <button class='cityBtn'>
+                <p>Chi-Town</p>
+            </button>
+        </div>
+    </div>
+<!--New York Button-->
+    <div class='row'>
+        <div class='col-sm-12' class='cityConfirm'>
+            <button class='cityBtn'>
+                <p>New York</p>
+            </button>
+        </div>
+    </div>
+<!--Orlando Button-->
+    <div class='row'>
+        <div class='col-sm-12' class='cityConfirm'>
+            <button class='cityBtn'>
+                <p>Orlando</p>
+            </button>
+        </div>
+    </div>
+<!--San Fran Button-->
+<div class='row'>
+    <div class='col-sm-12' class='cityConfirm'>
+        <button class='cityBtn'>
+            <p>San Francisco</p>
+        </button>
+    </div>
+</div>
+<!--Seattle-->
+<div class='row'>
+    <div class='col-sm-12' class='cityConfirm'>
+        <button class='cityBtn'>
+            <p>Seattle</p>
+        </button>
+    </div>
+</div>
+<!--Denver Button-->
+<div class='row'>
+    <div class='col-sm-12' class='cityConfirm'>
+        <button class='cityBtn'>
+            <p>Denver</p>
+        </button>
+    </div>
+</div>
+<!--Atlanta-->
+<div class='row'>
+    <div class='col-sm-12' class='cityConfirm'>
+        <button class='cityBtn'>
+            <p>Atlanta</p>
+        </button>
+    </div>
+</div>
+
+ <!--THIS IS THE DIV FOR THE CONTAINER STOP DELETING ON ACCIDENT-->   
+</div>
+
+<!--Div for jumbo results display-->
+<div id='jumbocontainer' class='displayWeather'>
+    <p>placeholder</p>
+</div>
+
+<!--five day forecast-->
+<article id= 'forecast' class='fiveDay'>
+
+</article>
+
+<!--Close main div-->
+</main>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script>
+        $('#container').css({'margin':'25px 25px 25px 25px'});
+        $('.jumbo').css({'min-height':'400px'});
+        $('.searchText').css({'font-size':'25px'});
+        $('.dashBoardHead').css({'background-color':'blue', 'margin':'15px 25px',
+    'height':'40px', 'text-align':'center', 'font-size':'40px', 'text-color':'white'});
+        $('.searchBtn').css({'width': '100%', 'max-height' :'30px'});
+        $('.searchBar').css({'width':'100%'})
+        $('.cityBtn').css({'width':'100%', 'max-height':'30px'});
+        $('#container').css({'max-width':'30%', 'min-height':'100%', 'display':'inline-block', 'margin-top': '0px'});
+        $('#jumbocontainer').css({'min-width':'70%', 'min-height':'50%', 'display':'inline-block', 'border':'1px solid black'
+    ,'position':'absolute'});
+    </script> 
+</body>
+</html>
