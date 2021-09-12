@@ -33,22 +33,19 @@
             <!--Search Bar-->
             <div class='row'>
                 <div class='col-sm-12'>
-                    <input class='searchBar' type='text' placeholder="ex: Atlanta">
-                </div>
-
-            </div>
-            <!--Search Button-->
-            <div class='row'>
-                <div class='col-sm-12' class='searchConfirm'>
-                    <button class='searchBtn'>
-                        <p>Search</p>
-                    </button>
+                    <form>
+                        <input id='searchBar' type='text' placeholder="ex: Atlanta">
+                        <!--Search Button-->
+                        <button id='searchBtn' type='submit'>Search</button>
+                        
+                        </button>
+                    </form>
                 </div>
             </div>
             <!--Austin Button-->
             <div class='row'>
                 <div class='col-sm-12' class='cityConfirm'>
-                    <button class='cityBtn'>
+                    <button id='austinBtn' class='cityBtn'>
                         <p>Austin</p>
                     </button>
                 </div>
@@ -56,7 +53,7 @@
             <!--Chi-Town Button-->
             <div class='row'>
                 <div class='col-sm-12' class='cityConfirm'>
-                    <button class='cityBtn'>
+                    <button id='chiBtn' class ='cityBtn'>
                         <p>Chi-Town</p>
                     </button>
                 </div>
@@ -64,7 +61,7 @@
             <!--New York Button-->
             <div class='row'>
                 <div class='col-sm-12' class='cityConfirm'>
-                    <button class='cityBtn'>
+                    <button id='nyBtn' class='cityBtn'>
                         <p>New York</p>
                     </button>
                 </div>
@@ -72,7 +69,7 @@
             <!--Orlando Button-->
             <div class='row'>
                 <div class='col-sm-12' class='cityConfirm'>
-                    <button class='cityBtn'>
+                    <button id='orlandoBtn' class='cityBtn'>
                         <p>Orlando</p>
                     </button>
                 </div>
@@ -80,7 +77,7 @@
             <!--San Fran Button-->
             <div class='row'>
                 <div class='col-sm-12' class='cityConfirm'>
-                    <button class='cityBtn'>
+                    <button id='sfBtn' class='cityBtn'>
                         <p>San Francisco</p>
                     </button>
                 </div>
@@ -88,7 +85,7 @@
             <!--Seattle-->
             <div class='row'>
                 <div class='col-sm-12' class='cityConfirm'>
-                    <button class='cityBtn'>
+                    <button id='seattleBtn' class='cityBtn'>
                         <p>Seattle</p>
                     </button>
                 </div>
@@ -96,7 +93,7 @@
             <!--Denver Button-->
             <div class='row'>
                 <div class='col-sm-12' class='cityConfirm'>
-                    <button class='cityBtn'>
+                    <button id='denverBtn' class='cityBtn'>
                         <p>Denver</p>
                     </button>
                 </div>
@@ -104,7 +101,7 @@
             <!--Atlanta-->
             <div class='row'>
                 <div class='col-sm-12' class='cityConfirm'>
-                    <button class='cityBtn'>
+                    <button id='atlantaBtn' class='cityBtn'>
                         <p>Atlanta</p>
                     </button>
                 </div>
@@ -114,8 +111,8 @@
         </div>
 
         <!--Div for jumbo results display-->
-        <div id='jumbocontainer' class='displayWeather'>
-            <p>placeholder</p>
+        <div id='jumboContainer' class='displayWeather'>
+
         </div>
 
         <!--five day forecast-->
@@ -139,27 +136,34 @@
             'background-color': 'blue', 'margin': '15px 25px',
             'height': '40px', 'text-align': 'center', 'font-size': '40px', 'text-color': 'white'
         });
-        $('.searchBtn').css({ 'width': '100%', 'max-height': '30px' });
+        $('#searchBtn').css({ 'width': '100%', 'min-height': '30px' });
         $('.searchBar').css({ 'width': '100%' })
         $('.cityBtn').css({ 'width': '100%', 'max-height': '30px' });
         $('#container').css({ 'max-width': '30%', 'min-height': '100%', 'display': 'inline-block', 'margin-top': '0px' });
-        $('#jumbocontainer').css({
+        $('#jumboContainer').css({
             'min-width': '70%', 'min-height': '50%', 'display': 'inline-block', 'border': '1px solid black'
             , 'position': 'absolute'
         });
 
         //fetch weather APIs
-        function weatherStats() {
-            fetch('https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=6237f89cd97348e4a9cf30e8fe195ca0'
-            )
-                .then(function (chiCall) {
-                    return chiCall.json();
-                })
-                .then(function (chiCall) {
-                    var chiEl = chiCall
-                }
+        function chiStats() {
+                fetch('https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&units=standard&exclude=hourly,daily&appid=6237f89cd97348e4a9cf30e8fe195ca0'
                 )
+                    .then(function (chiCall) {
+                        return chiCall.json();
+                    })
+                    .then(function (chiCall) {
+                        console.log(chiCall);
+                        var chiWeather = JSON.stringify(chiCall.current.temp);
 
+                        var chiWeatherAppend = document.querySelector('#jumboContainer')
+                        chiWeatherAppend.innerHTML = 'Temperature ' + chiWeather;
+                    }
+                    )
+            
+        }
+
+        function nyStats() {
             fetch('https://api.openweathermap.org/data/2.5/onecall?lat=40.7128&lon=-74.0060&exclude=hourly,daily&appid=6237f89cd97348e4a9cf30e8fe195ca0'
             )
                 .then(function (nyCall) {
@@ -169,7 +173,10 @@
                     var nyEl = nyCall
                 }
                 )
+        }
 
+
+        function atStats() {
             fetch('https://api.openweathermap.org/data/2.5/onecall?lat=33.7490&lon=-84.3880&exclude=hourly,daily&appid=6237f89cd97348e4a9cf30e8fe195ca0'
             )
                 .then(function (atlantaCall) {
@@ -179,6 +186,10 @@
                     var atlantaEl = atlantaCall
                 }
                 )
+
+        }
+
+        function auStats() {
             fetch('https://api.openweathermap.org/data/2.5/onecall?lat=30.2672&lon=-97.7431&exclude=hourly,daily&appid=6237f89cd97348e4a9cf30e8fe195ca0'
             )
                 .then(function (austinCall) {
@@ -188,6 +199,9 @@
                     var austinEl = austinCall
                 }
                 )
+        }
+
+        function orStats() {
             fetch('https://api.openweathermap.org/data/2.5/onecall?lat=28.5384&lon=-81.3789&exclude=hourly,daily&appid=6237f89cd97348e4a9cf30e8fe195ca0'
             )
                 .then(function (orlandoCall) {
@@ -197,7 +211,10 @@
                     var orlandoEl = orlandoCall
                 }
                 )
+        }
 
+
+        function sfStats() {
             fetch('https://api.openweathermap.org/data/2.5/onecall?lat=37.7749&lon=-122.4194&exclude=hourly,daily&appid=6237f89cd97348e4a9cf30e8fe195ca0'
             )
                 .then(function (sfCall) {
@@ -207,6 +224,9 @@
                     var sf = sfCall
                 }
                 )
+        }
+
+        function denStats() {
             fetch('https://api.openweathermap.org/data/2.5/onecall?lat=39.7392&lon=-104.9903&exclude=hourly,daily&appid=6237f89cd97348e4a9cf30e8fe195ca0'
             )
                 .then(function (denverCall) {
@@ -216,6 +236,9 @@
                     var denverEl = denverCall
                 }
                 )
+        }
+
+        function seaStats() {
             fetch('https://api.openweathermap.org/data/2.5/onecall?lat=47.6062&lon=-122.3321&exclude=hourly,daily&appid=6237f89cd97348e4a9cf30e8fe195ca0'
             )
                 .then(function (seattleCall) {
@@ -227,6 +250,37 @@
                 )
         }
 
+
+
+        //event listeners for buttons
+        var atEl = document.querySelector('#atlantaBtn');
+        atEl.addEventListener('click', atStats);
+
+        var chiEl = document.querySelector('#chiBtn');
+        chiEl.addEventListener('click', chiStats);
+
+        var nyEl = document.querySelector('#nyBtn');
+        nyEl.addEventListener('click', nyStats);
+
+        var orEl = document.querySelector('#orlandoBtn');
+        orEl.addEventListener('click', orStats);
+
+        var sfEl = document.querySelector('#sfBtn');
+        sfEl.addEventListener('click', sfStats);
+
+        var denEl = document.querySelector('#denverBtn');
+        denEl.addEventListener('click', denStats);
+
+        var seEl = document.querySelector('#seattleBtn');
+        seEl.addEventListener('click', seaStats);
+
+        var auEl = document.querySelector('#austinBtn');
+        auEl.addEventListener('click', auStats);
+
+        //Search Function
+        var searchFunction = function () {
+
+        }
 //my key
 //2a7fa0b6a17413191ad7981a1cfd869c
 
