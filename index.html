@@ -11,7 +11,7 @@
     <style rel='stylesheet' href='assets/css/style.css'></style>
 </head>
 
-<body>
+<body class='body'>
 
     <!--Create Header-->
     <header class='dashBoardHead'>
@@ -19,183 +19,201 @@
     </header>
 
     <!--Create main div-->
-    <main class='mainContainer'>
 
-        <!--Container Div for grid-->
-        <div id='container' class='weatherMain'>
-            <div class='row'>
+    <!--Container Div for grid-->
+    <div id='container' class='weatherMain'>
+        <div class='row'>
 
-                <div class='col-sm-12' class='searchText'>
-                    <p class='searchText'>Search By City:</p>
-                </div>
+            <div class='col-sm-4' class='searchText'>
+                <p class='searchText'>Search By City:</p>
+                <input id='searchBar' type='text' value='' />
+                <!--Search Button-->
+                <br>
+                <button onclick='weatherStats()'>Search</button>
+                <br>
 
             </div>
-            <!--Search Bar-->
-            <div class='row'>
-                <div class='col-sm-12'>
-
-                    <input id='searchBar' type='text' value='' />
-                    <!--Search Button-->
-                    <button onclick='weatherStats()'>Search</button>
-
-
-
-                </div>
-            </div>
-            <!--Austin Button-->
-            <div class='row'>
-                <div class='col-sm-12' class='cityConfirm'>
-                    <button id='austinBtn' class='cityBtn'>
-                        <p>Austin</p>
-                    </button>
-                </div>
-            </div>
-            <!--Chi-Town Button-->
-            <div class='row'>
-                <div class='col-sm-12' class='cityConfirm'>
-                    <button id='chiBtn' class='cityBtn'>
-                        <p>Chi-Town</p>
-                    </button>
-                </div>
-            </div>
-            <!--New York Button-->
-            <div class='row'>
-                <div class='col-sm-12' class='cityConfirm'>
-                    <button id='nyBtn' class='cityBtn'>
-                        <p>New York</p>
-                    </button>
-                </div>
-            </div>
-            <!--Orlando Button-->
-            <div class='row'>
-                <div class='col-sm-12' class='cityConfirm'>
-                    <button id='orlandoBtn' class='cityBtn'>
-                        <p>Orlando</p>
-                    </button>
-                </div>
-            </div>
-            <!--San Fran Button-->
-            <div class='row'>
-                <div class='col-sm-12' class='cityConfirm'>
-                    <button id='sfBtn' class='cityBtn'>
-                        <p>San Francisco</p>
-                    </button>
-                </div>
-            </div>
-            <!--Seattle-->
-            <div class='row'>
-                <div class='col-sm-12' class='cityConfirm'>
-                    <button id='seattleBtn' class='cityBtn'>
-                        <p>Seattle</p>
-                    </button>
-                </div>
-            </div>
-            <!--Denver Button-->
-            <div class='row'>
-                <div class='col-sm-12' class='cityConfirm'>
-                    <button id='denverBtn' class='cityBtn'>
-                        <p>Denver</p>
-                    </button>
-                </div>
-            </div>
-            <!--Atlanta-->
-            <div class='row'>
-                <div class='col-sm-12' class='cityConfirm'>
-                    <button id='atlantaBtn' class='cityBtn'>
-                        <p>Atlanta</p>
-                    </button>
-                </div>
+            <div id='jumboContainer' class='displayWeather' class='col-sm-8'>
+                <h1 id='jumboHead'></h1>
+                <br>
+                <p id='jumboStats'></p>
+                <p id='uvStats'><p id='uv'></p>
+                </p>
+                
             </div>
 
-            <!--THIS IS THE DIV FOR THE CONTAINER STOP DELETING ON ACCIDENT-->
         </div>
+    </div>
+    <div id='containerTwo' class='row'>
+        <div class='col-sm-4'>
 
-        <!--Div for jumbo results display-->
-        <div id='jumboContainer' class='displayWeather'>
-            <h1 id='jumboHead'></h1>
-            <br>
-            <p id='jumboStats'></p>
         </div>
+        <div class='forecast' class='fiveDay' class='col-sm-8'>
+            <h1>Five Day Forecast:</h1>
+            <div id='dayOne' class='forecastBlock' class='col-sm-2'></div>
+            <div id='dayTwo' class='forecastBlock' class='col-sm-2'></div>
+            <div id='dayThree' class='forecastBlock' class='col-sm-2'></div>
+            <div id='dayFour' class='forecastBlock' class='col-sm-2'></div>
+            <div id='dayFive' class='forecastBlock' class='col-sm-2'></div>
+        </div>
+    </div>
 
-        <!--five day forecast-->
-        <article id='forecast' class='fiveDay'>
 
-        </article>
+    <!--Div for jumbo results display-->
 
-        <!--Close main div-->
-    </main>
+    <!--THIS IS THE DIV FOR THE CONTAINER STOP DELETING ON ACCIDENT-->
+    </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-    <script>
 
-        //style
-        $('#container').css({ 'margin': '25px 25px 25px 25px' });
-        $('.jumbo').css({ 'min-height': '400px' });
-        $('.searchText').css({ 'font-size': '25px' });
-        $('.dashBoardHead').css({
-            'background-color': 'blue', 'margin': '15px 25px',
-            'height': '40px', 'text-align': 'center', 'font-size': '40px', 'text-color': 'white'
-        });
-        $('#searchBtn').css({ 'width': '100%', 'min-height': '30px' });
-        $('.searchBar').css({ 'width': '100%' })
-        $('.cityBtn').css({ 'width': '100%', 'max-height': '30px' });
-        $('#container').css({ 'max-width': '30%', 'min-height': '100%', 'display': 'inline-block', 'margin-top': '0px' });
-        $('#jumboContainer').css({
-            'min-width': '70%', 'min-height': '50%', 'display': 'inline-block', 'border': '1px solid black'
-            , 'position': 'absolute'
-        });
+    </div>
 
-        //fetch current weather APIs
-        function weatherStats() {
-            var thisCity = document.querySelector('#searchBar').value;
+</body>
+<!--five day forecast-->
 
-            fetch('https://api.openweathermap.org/data/2.5/weather?q=' + thisCity + '&units=imperial&appid=2a7fa0b6a17413191ad7981a1cfd869c'
-            )
-                .then(function (weatherCall) {
-                    return weatherCall.json();
+
+<!--Close main div-->
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<script>
+
+    //style
+    $('#uv').css({'max-width':'20px'});
+    $('#container').css({ 'height': '250px', 'margin': '50px' })
+    //$('#container').css({'width':'400px', 'margin': '0px', 'display':'inline-block', 'height':'398px'})
+    $('.searchText').css({ 'font-size': '25px' });
+    $('.dashBoardHead').css({
+        'background-color': 'blue', 'margin': '15px 25px',
+        'height': '40px', 'text-align': 'center', 'font-size': '40px', 'text-color': 'white'
+    });
+    $('.body').css({ 'height': '100%' });
+
+    $('#holdThis').css({ 'display': 'inline-block' });
+    $('#jumboContainer').css({
+        'min-height': '250px', 'margin-bottom': '0px'
+    });
+
+    $('.forecast').css({ 'min-height': '250px' });
+    $('.forecastBlock').css({ 'display': 'inline-block', 'justify-content': 'space-between', 'padding': '30px', 'background-color': 'teal' });
+    //fetch current weather APIs
+    function weatherStats() {
+        var thisCity = document.querySelector('#searchBar').value;
+
+        fetch('https://api.openweathermap.org/data/2.5/weather?q=' + thisCity + '&units=imperial&appid=2a7fa0b6a17413191ad7981a1cfd869c'
+        )
+            .then(function (weatherCall) {
+                return weatherCall.json();
+            })
+            .then(function (data) {
+                console.log(data);
+
+                var currentTemp = data.main.temp;
+                var currentWind = data.wind.speed;
+                var currentHumidity = data.main.humidity;
+                var currentIcon = data.weather[0].icon;
+                var currentName = data.name
+                var currentDate = moment().format("MM/DD/YYYY");
+                var currentLat = data.coord.lat;
+                var currentLong = data.coord.lon;
+                console.log(currentLat);
+
+
+                //create strings for broadcasting
+                var currentWeatherHeader = document.querySelector('#jumboHead');
+                currentWeatherHeader.innerHTML = currentName + ' (' + currentDate + ')' + currentIcon;
+
+                var currentWeatherStats = document.querySelector('#jumboStats');
+                currentWeatherStats.innerHTML = '<b>  <h2>' + 'Temp: ' + currentTemp + ' \xB0' + 'F' + '<br>' + 'Wind: ' + currentWind + ' MPH' + '<br>' + 'Humidity: ' + currentHumidity + ' %';
+                //fetch UV index
+                return fetch (
+                    'https://api.openweathermap.org/data/2.5/onecall?lat=' + currentLat +
+                    '&lon=' + currentLong +
+                    '&appid=2a7fa0b6a17413191ad7981a1cfd869c');
+            })
+                .then(function(uvCall){
+                    return uvCall.json();
                 })
-                .then(function (data) {
-                    console.log(data.name);
-                    
-                    var currentTemp = data.main.temp;
-                    var currentWind = data.wind.speed;
-                    var currentHumidity = data.main.humidity;
-                    var currentIcon = data.weather[0].icon;
-                    var currentDescription = data.weather[0].description;
-                    var currentName = data.name;
-                    var currentDate = moment().format("MM/DD/YYYY");
+                .then(function(uvData){
+                    console.log(uvData)
+                    var currentUV = uvData.current.uvi;
+                    var UVtext = document.querySelector('#uvStats')
+                    UVtext.innerHTML = '<b> <h2> UV Index: ';
+                    var UVappend = document.querySelector('#uv')
+                    UVappend.innerHTML = '<b> <h2>' + currentUV;
+                    if(currentUV >= 0 && currentUV < 3){
 
-                    console.log(currentTemp);
+                      var uvGood =  document.querySelector('#uv').style.background = 'lime';    
+                    }
+                    if(currentUV > 2 && currentUV < 6){
+                        var uvOkay = document.querySelector('#uv').style.background = 'yellow';
+                    }
+                    if(currentUV > 5 && currentUV < 8){
+                       var uvBad = document.querySelector('#uv').style.background = 'red';
+                    }
 
-                    var currentWeatherHeader = document.querySelector('#jumboHead');
-                    currentWeather.innerHTML = currentName + ' (' + currentDate + ')' + currentIcon;
-                    
-                    var currentWeatherStats = document.querySelector('#jumboStats');
-
-                    //fetch 5 day forecast
-                    return fetch(
-                        'https://api.openweathermap.org/data/2.5/forecast?q=' + thisCity + '&units=imperial&appid=2a7fa0b6a17413191ad7981a1cfd869c'
-                    );
+                //fetch 5 day forecast
+                return fetch(
+                    'https://api.openweathermap.org/data/2.5/forecast?q=' + thisCity + '&units=imperial&appid=2a7fa0b6a17413191ad7981a1cfd869c'
+                );
                 })
-                .then(function (fiveCall) {
-                    return fiveCall.json();
-                })
-                .then(function (fiveCall) {
-                    console.log(fiveCall);
+            .then(function (fiveCall) {
+                return fiveCall.json();
+            })
+            .then(function (fiveCall) {
+                console.log(fiveCall);
+                //Next Day
+                
+                var dayOneDate = fiveCall.list[4].dt_txt;
+                var dayOneTemp = fiveCall.list[4].main.temp;
+                var dayOneWind = fiveCall.list[4].wind.speed;
+                var dayOneHumidity = fiveCall.list[4].main.humidity;
+                console.log(dayOneDate);
+                var dayOneCall = document.querySelector('#dayOne')
+                dayOneCall.innerHTML = dayOneDate + '<br>' + 'Temp: ' + dayOneTemp + ' \xB0' + 'F' + '<br>' + 'Wind: ' + dayOneWind + ' MPH' + '<br>' + 'Humidity: ' + dayOneHumidity + ' %';
+                //In Two Days
+                var dayTwoDate = fiveCall.list[11].dt_txt;
+                var dayTwoTemp = fiveCall.list[11].main.temp;
+                var dayTwoWind = fiveCall.list[11].wind.speed;
+                var dayTwoHumidity = fiveCall.list[11].main.humidity;
+                var dayTwoCall = document.querySelector('#dayTwo');
+                dayTwoCall.innerHTML = dayTwoDate + '<br>' + 'Temp: ' + dayTwoTemp + ' \xB0' + 'F' + '<br>' + 'Wind: ' + dayTwoWind + ' MPH' + '<br>' + 'Humidity: ' + dayTwoHumidity + ' %';
+                console.log(dayTwoDate);
+                console.log(dayTwoTemp);
+                console.log(dayTwoWind);
+                console.log(dayTwoHumidity);
+                //In Three Days
+                var dayThreeDate = fiveCall.list[19].dt_txt;
+                var dayThreeTemp = fiveCall.list[19].main.temp;
+                var dayThreeWind = fiveCall.list[19].wind.speed;
+                var dayThreeHumidity = fiveCall.list[19].main.humidity;
+                var dayThreeCall = document.querySelector('#dayThree');
+                dayThreeCall.innerHTML = dayThreeDate + '<br>' + 'Temp: ' + dayThreeTemp + ' \xB0' + 'F' + '<br>' + 'Wind: ' + dayThreeWind + ' MPH' + '<br>' + 'Humidity: ' + dayThreeHumidity + ' %';
+                //In Four Days
+                var dayFourDate = fiveCall.list[27].dt_txt;
+                var dayFourTemp = fiveCall.list[27].main.temp;
+                var dayFourWind = fiveCall.list[27].wind.speed;
+                var dayFourHumidity = fiveCall.list[27].main.humidity;
+                var dayFourCall = document.querySelector('#dayFour');
+                dayFourCall.innerHTML = dayFourDate + '<br>' + 'Temp: ' + dayFourTemp + ' \xB0' + 'F' + '<br>' + 'Wind: ' + dayFourWind + ' MPH' + '<br>' + 'Humidity: ' + dayFourHumidity + ' %';
+                //In Five Days
+                var dayFiveDate = fiveCall.list[35].dt_txt;
+                var dayFiveTemp = fiveCall.list[35].main.temp;
+                var dayFiveWind = fiveCall.list[35].wind.speed;
+                var dayFiveHumidity = fiveCall.list[35].main.humidity;
+                var dayFiveCall = document.querySelector('#dayFive');
+                dayFiveCall.innerHTML = dayFiveDate + '<br>' + 'Temp: ' + dayFiveTemp + ' \xB0' + 'F' + '<br>' + 'Wind: ' + dayFiveWind + ' MPH' + '<br>' + 'Humidity: ' + dayFiveHumidity + ' %';
+
+
+            });
 
 
 
 
 
-                });
-
-
-
-
-
-        }
+    }
 
 
 
@@ -207,8 +225,8 @@
 //my key
 //2a7fa0b6a17413191ad7981a1cfd869c
 
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
-</body>
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+
 
 </html>
